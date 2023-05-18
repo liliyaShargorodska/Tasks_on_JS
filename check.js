@@ -22,7 +22,7 @@
 //    }
 //
 //    function findLongestUniqueSubstring() {
-//
+////task 2
 //     function findLongestSubstring(str) {
 //       let longestSubstring = "";
 //       let currentSubstring = "";
@@ -53,22 +53,43 @@
 //     const longestUniqueSubstring = findLongestSubstring(myArea);
 //     console.log(longestUniqueSubstring);
 //   }
-  //tasks 3
-function sortColumn(column) {
-  const table = document.getElementById("myTable");
-  const tbody = table.querySelector("tbody");
-  const rows = Array.from(tbody.getElementsByTagName("tr"));
-  const columnIndex = Array.from(table.tHead.rows[0].cells).findIndex(
-    (cell) => cell.textContent === column
-  );
+//task3
 
-  rows.sort((rowA, rowB) => {
-    const cellA = rowA.getElementsByTagName("td")[columnIndex].textContent;
-    const cellB = rowB.getElementsByTagName("td")[columnIndex].textContent;
+const table = document.getElementById('myTable');
+const tbody = table.getElementsByTagName('tbody')[0];
+const rows = Array.from(tbody.getElementsByTagName('tr'));
+
+const sortColumn = (columnName) => {
+  const columnIndex = Array.from(table.tHead.rows[0].cells).findIndex((th) => th.textContent === columnName);
+  rows.sort((a, b) => {
+    const cellA = a.cells[columnIndex].textContent.toLowerCase();
+    const cellB = b.cells[columnIndex].textContent.toLowerCase();
     return cellA.localeCompare(cellB);
   });
+  rows.forEach((row) => tbody.appendChild(row));
+};
 
-  for (let i = 0; i < rows.length; i++) {
-    tbody.appendChild(rows[i]);
-  }
-}
+
+// Create the tableData object
+const tableData = {
+  rows: [
+    {
+      id: 1,
+      first: "Mark",
+      last: "Otto",
+      handle: "@mdo"
+    },
+    {
+      id: 2,
+      first: "Jacob",
+      last: "Thornton",
+      handle: "@fat"
+    },
+    {
+      id: 3,
+      first: "Larry",
+      last: "the Bird",
+      handle: "@twitter"
+    }
+  ]
+};
